@@ -99,15 +99,18 @@ class Handler:
             self.handle_stop()
 
     def handle_get(self):
-        self.echo('get')
         raw_code = self.editor_area.text
         code = self.remove_line_numbers(raw_code)
+        self.enter_code(code)
+        
+    def enter_code(self, code):
+        # TODO: Clear all text first? use 'ggdG'
         # Enter insert mode
         self.nvim.feedkeys("i", "t")
         self.nvim.feedkeys(code, "t")
-        # Exit insert mode
-        self.nvim.feedkeys(Keys.ESCAPE, "t")
-        
+        # Exit insert mode. TODO: move nvim handling to separate class
+        self.nvim.input('<ESC>')
+
     def remove_line_numbers(self, raw_code):
         """Trims the raw code from the web editor, returning the code without line numbers."""
         trimmed_code = ""
