@@ -118,17 +118,30 @@ class Handler:
         count = 0
         for line in lines:
             count += 1
-            # Every other line contains line the line numbers, dont use them
+            # Every other line contains line the line numbers, dont keep them
             if count % 2 == 0:
                 trimmed_code += line + "\n"
 
         return trimmed_code
 
     def handle_send(self):
-        self.echo("Adding code to web editor")
-        action = ActionChains(self.driver).click(self.editor_area)
-        action.send_keys(Keys.ENTER).send_keys(Keys.END).send_keys("ashsh")
-        action.perform()
+        lines_list = self.nvim.current.buffer.api.get_lines(0,-1,True)
+        code = self.lines_list_to_string(lines_list)
+        ActionChains(self.driver).click(self.editor_area).send_keys(code).perform()
+
+
+    def lines_list_to_string(self, lines_list):
+        lines = ""
+        length = len(lines_list)
+        count = 0
+        for line in lines_list:
+            count += 1
+            lines += line
+            if count != length:
+                lines += "\n"
+
+        return lines
+        
 
     def handle_run(self):
         self.run_button.click()
