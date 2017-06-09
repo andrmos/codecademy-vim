@@ -5,7 +5,7 @@ Vim (Neovim) integration with Codecademy.
 The code is therefore subpar, and might not work properly.*
 
 ## Installation
-1. Install the required dependencies.
+1. Install the required dependencies via your favorite package manager.
 2. Make sure ChromeDriver is in the PATH environment variable.
 3. Start a Neovim instance with the `NVIM_LISTEN_ADDRESS=/tmp/nvim` variable.
 
@@ -35,9 +35,9 @@ The aim is to be able to solve Codecademy programming lessons in Vim, with all V
 - [ ] ...
 
 ## Dependencies
-- Neovim
-- Python3
-- Python Selenium
-- Chrome/Chromium
-- ChromeDriver
-- Neovim python-client
+- [Neovim](https://neovim.io/)
+- [Python3](https://www.python.org/)
+- [Python Selenium](https://pypi.python.org/pypi/selenium)
+- [Chrome/Chromium](http://www.chromium.org/Home)
+- [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/)
+- [Neovim python-client](https://github.com/neovim/python-client)
