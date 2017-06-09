@@ -4,6 +4,16 @@ Vim (Neovim) integration with Codecademy.
 *Disclaimer: This is a proof of concept/work in progress, created with no prior experience with python or plugin development for Vim.
 The code is therefore subpar, and might not work properly.*
 
+## Installation
+1. Install the required dependencies.
+2. Make sure ChromeDriver is in the PATH environment variable.
+3. Start a Neovim instance with the `NVIM_LISTEN_ADDRESS=/tmp/nvim` variable.
+
+   Eg. in bash: `NVIM_LISTEN_ADDRESS=/tmp/nvim nvim <filename>`
+   or in fish: `env NVIM_LISTEN_ADDRESS=/tmp/nvim nvim <filename>`
+
+4. Run codecademy.py `python3 codecademy.py`
+
 ## Aim
 The aim is to be able to solve Codecademy programming lessons in Vim, with all Vim mappings and commands you are used to.
 - Enter code from Vim into the Codecademy web editor with a Vim command
@@ -30,4 +40,4 @@ The aim is to be able to solve Codecademy programming lessons in Vim, with all V
 - Python Selenium
 - Chrome/Chromium
 - ChromeDriver
-- Python-client (python client for Neovim)
+- Neovim python-client
