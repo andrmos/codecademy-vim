@@ -15,6 +15,8 @@ The code is therefore subpar, and might not work properly.*
 
 6. Run codecademy.py `python3 codecademy.py`
 
+Note: You might have to add `set expandtab` to your vimrc for indentation to work correctly when moving code to the Codecademy web editor.
+
 ## Aim
 The aim is to be able to solve Codecademy programming lessons in Vim, with all Vim mappings and commands you are used to.
 - Enter code from Vim into the Codecademy web editor with a Vim command
