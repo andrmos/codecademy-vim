@@ -51,14 +51,10 @@ class Handler:
         password_field.send_keys(password)
         password_field.send_keys(Keys.RETURN)
 
+    # TODO Move to own 'Selectors' class
     def init_variables(self):
         # Editor area
-        editor_area_selector = ".editor-container"
-        self.editor_area = self.driver.find_element_by_css_selector(editor_area_selector)
-
-        # Run button
-        run_button_selector = "._2fDy3KzGIsY8FHMg74ib-V.lx0K4MugD9fFT3l5pAqK1"
-        self.run_button = self.driver.find_element_by_css_selector(run_button_selector)
+        self.editor_area_selector = ".editor-container"
 
     def click_resume(self):
         """Click resume button at profile page. TODO Use link directly."""
@@ -108,7 +104,9 @@ class Handler:
         ActionChains(self.driver).click(editor_area).key_down(Keys.CONTROL).send_keys("a").key_up(Keys.CONTROL).send_keys(Keys.BACKSPACE).perform()
 
     def handle_get(self):
-        raw_code = self.editor_area.text
+        """Get code from web editor and enter it to Vim."""
+        editor_area = self.driver.find_element_by_css_selector(self.editor_area_selector)
+        raw_code = editor_area.text
         code = self.remove_line_numbers(raw_code)
         self.enter_code(code)
         
@@ -136,8 +134,9 @@ class Handler:
     def handle_send(self):
         lines_list = self.nvim.current.buffer.api.get_lines(0,-1,True)
         code = self.lines_list_to_string(lines_list)
-        ActionChains(self.driver).click(self.editor_area).send_keys(code).perform()
-
+        # TODO: Possible to improve speed by copying to system clipboard.
+        editor_area = self.driver.find_element_by_css_selector(self.editor_area_selector)
+        ActionChains(self.driver).click(editor_area).send_keys(code).perform()
 
     def lines_list_to_string(self, lines_list):
         lines = ""
