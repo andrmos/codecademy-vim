@@ -74,7 +74,8 @@ class Handler:
         self.nvim.command('nmap <Leader>cr :call rpcnotify(%d, "run")<CR>' % self.channel_id)
         # Stop python script
         self.nvim.command('nmap <Leader>st :call rpcnotify(%d, "stop")<CR>' % self.channel_id)
-        # TODO mapping to clear input
+        # Clear input
+        self.nvim.command('nmap <Leader>cc :call rpcnotify(%d, "clear")<CR>' % self.channel_id)
 
     def start_loop(self):
         """Start the event loop"""
@@ -97,6 +98,14 @@ class Handler:
             self.handle_run()
         elif event == 'stop':
             self.handle_stop()
+        elif event == 'clear':
+            self.handle_clear()
+
+    def handle_clear(self):
+        """Delete all code in the web editor."""
+        self.echo("Clearing")
+        editor_area = self.driver.find_element_by_css_selector(self.editor_area_selector)
+        ActionChains(self.driver).click(editor_area).key_down(Keys.CONTROL).send_keys("a").key_up(Keys.CONTROL).send_keys(Keys.BACKSPACE).perform()
 
     def handle_get(self):
         raw_code = self.editor_area.text
