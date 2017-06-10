@@ -2,6 +2,7 @@ from neovim import attach
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.common.exceptions import NoSuchElementException
 
 class Handler:
 
@@ -152,7 +153,19 @@ class Handler:
         
 
     def handle_run(self):
-        self.run_button.click()
+        """Click the run button in the web editor."""
+        # Run button. Uses two different selectors for different states.
+        run_button_selector = "._2fDy3KzGIsY8FHMg74ib-V.lx0K4MugD9fFT3l5pAqK1.MTCEyvDkUZr1N1ksDTx1I"
+        run_button_selector2 = "._2fDy3KzGIsY8FHMg74ib-V.lx0K4MugD9fFT3l5pAqK1"
+        try:
+            self.driver.find_element_by_css_selector(run_button_selector).click()
+        except NoSuchElementException as e:
+            print(e.msg)
+
+        try:
+            self.driver.find_element_by_css_selector(run_button_selector2).click()
+        except NoSuchElementException as e:
+            print(e.msg)
 
     def handle_stop(self):
         """Stop the event loop"""
