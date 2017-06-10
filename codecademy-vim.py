@@ -82,6 +82,7 @@ class Handler:
             self.handle_events(event)
 
     def parse_event(self):
+        """Return single message from RPC message."""
         raw_event = self.nvim.next_message()
         return raw_event[1]
 
@@ -111,7 +112,9 @@ class Handler:
         code = self.remove_line_numbers(raw_code)
         self.enter_code(code)
         
+    # TODO: Better name
     def enter_code(self, code):
+        """Enter code to Vim."""
         # TODO: Clear all text first? use 'ggdG'
         # Enter insert mode
         self.nvim.feedkeys("i", "t")
@@ -133,6 +136,7 @@ class Handler:
         return trimmed_code
 
     def handle_send(self):
+        """Enter all content from Vim to the web editor."""
         lines_list = self.nvim.current.buffer.api.get_lines(0,-1,True)
         code = self.lines_list_to_string(lines_list)
         # TODO: Possible to improve speed by copying to system clipboard.
@@ -140,6 +144,7 @@ class Handler:
         ActionChains(self.driver).click(editor_area).send_keys(code).perform()
 
     def lines_list_to_string(self, lines_list):
+        """Transform a list to a single string, with each element on a separate line."""
         lines = ""
         length = len(lines_list)
         count = 0
