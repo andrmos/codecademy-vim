@@ -2,7 +2,7 @@
 Vim (Neovim) integration with Codecademy.
 
 ![Animated demonstration](screencast.gif)
-Using commands `<Leader>cs` to move code to web editor, and `<Leader>cr` to run the code.
+`<Leader>cs` moves code to web editor, and `<Leader>cr` runs the code. See *Progress* for current features.
 
 *Disclaimer: This is a proof of concept/work in progress, created with no prior experience with python or plugin development for Vim.
 The code is therefore subpar, and might not work properly.*
@@ -16,9 +16,9 @@ The code is therefore subpar, and might not work properly.*
    Eg. in bash: `NVIM_LISTEN_ADDRESS=/tmp/nvim nvim <filename>`
    or in fish: `env NVIM_LISTEN_ADDRESS=/tmp/nvim nvim <filename>`
 
-6. Run codecademy.py `python3 codecademy.py`
+6. Run codecademy.py: `python3 codecademy.py`
 
-Note: You might have to add `set expandtab` to your vimrc for indentation to work correctly when moving code to the Codecademy web editor.
+Note: You might have to add `set expandtab` to your .vimrc for indentation to work correctly when moving code to the Codecademy web editor.
 
 ## Aim
 The aim is to be able to solve Codecademy programming lessons in Vim, with all Vim mappings and commands you are used to.
