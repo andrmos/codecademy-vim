@@ -1,6 +1,9 @@
 # codecademy-vim
 Vim (Neovim) integration with Codecademy.
 
+![Animated demonstration](screencast.gif)
+Using commands `<Leader>cs` to move code to web editor, and `<Leader>cr` to run the code.
+
 *Disclaimer: This is a proof of concept/work in progress, created with no prior experience with python or plugin development for Vim.
 The code is therefore subpar, and might not work properly.*
 
